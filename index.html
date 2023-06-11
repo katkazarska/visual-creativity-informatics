@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://www.cssscript.com/demo/sticky.css" rel="stylesheet" type="text/css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Tessellator</title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="sidebar">
+        <ul class="menu-list">
+          <li>
+            <h5>Tessellator</h5>
+            <p style="padding-bottom: 25px;">An interactive tool for creating your own tessellations</p>
+          </li>
+          <li>
+            <button class="icon" id="shape">
+              <img src="./assets/images/grid.svg" alt="shape" />
+            </button>
+            <div class="section" id="size_section">
+              <p class="black-text" style="font-size: small;">Choose a size:</p>
+              <form id="size_picker" action="#">
+                <p>
+                  <label for="small">
+                    <input id="small" class="with-gap" name="shape_group" type="radio" checked />
+                    <span class="black-text" style="font-size: small;">small</span>
+                  </label>
+                </p>
+                <p>
+                  <label for="medium">
+                    <input id="medium" class="with-gap" name="shape_group" type="radio" />
+                    <span class="black-text" style="font-size: small;">medium</span>
+                  </label>
+                </p>
+                <p>
+                  <label for="large">
+                    <input id="large" class="with-gap" name="shape_group" type="radio" />
+                    <span class="black-text" style="font-size: small;">large</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+          </li>
+          <li>
+            <button class="icon" id="color">
+              <img src="./assets/images/color.svg" alt="color" />
+            </button>
+            <div class="section" id="color_section">
+              <div class="clr-field">
+                <button type="button" style="height: 30px; width: 30px; border-radius: 10px;"></button>  
+                <input id="choose_color" type="text" data-coloris/>
+                <label class="black-text" for="choose_color">Color</label>
+              </div> 
+            </div>
+          </li>
+          <li>
+            <button class="icon" id="zoomin">
+              <img src="./assets/images/zoomin.svg" alt="zoomin" />
+            </button>  
+            <button class="icon" id="zoomout">
+              <img src="./assets/images/zoomout.svg" alt="zoomout" />
+            </button> 
+          </li>
+          <li>
+            <button class="icon" id="import">
+              <img src="./assets/images/import.svg" alt="import" />
+            </button>
+            <div class="section" id="import_section">
+              <input type="file" id="json_file" accept=".json"/>
+            </div>
+          </li>
+          <li>
+            <button class="icon" id="export">
+              <img src="./assets/images/export.svg" alt="export" />
+            </button>
+            <div class="section" id="export_section">
+              <p class="black-text" style="font-size: small;">Choose an export format:</p>
+              <form id="export_picker" action="#" style="padding-bottom: 15px;">
+                <p>
+                  <label for="svg">
+                    <input id="svg" value="svg" class="with-gap" name="export_group" type="radio" checked />
+                    <span class="black-text" style="font-size: small;">.svg</span>
+                  </label>
+                </p>
+                <p>
+                  <label for="png">
+                    <input id="png" class="with-gap" name="export_group" type="radio" />
+                    <span class="black-text" style="font-size: small;">.png</span>
+                  </label>
+                </p>
+                <p>
+                  <label for="json">
+                    <input id="json" class="with-gap" name="export_group" type="radio" />
+                    <span class="black-text" style="font-size: small;">.json</span>
+                  </label>
+                </p>
+              </form>
+              <button class="waves-effect waves-light btn-small lime darken-2" style="font-size: small;" id="export_button">Export</button>
+            </div>
+          </li>
+          <li>
+            <button class="icon" id="info">
+              <img src="./assets/images/info.svg" alt="info" />
+            </button>
+            <div class="section" id="info_section">
+              <p style="font-size: small;">
+                Created by Kateřina Žárská as part of the Visual Creativity Informatics course at Masaryk University, Brno.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="main" id="main">
+        <div class="bar" id="top_bar">
+          <ul class="list">
+            <li style="padding-left: 50px;">
+              <button class="icon" id="design_tab">
+                <img src="./assets/images/design.svg" alt="design_tab" />
+              </button>
+            </li>
+            <li>
+              <button class="icon" id="view_tab" >
+                <img src="./assets/images/view.svg" alt="view_tab" />
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="area" id="area">
+          <div id="design"></div>
+          <div id="view"></div>
+        </div>
+      </div>
+    </div>
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+    <script src="https://unpkg.com/p5.js-svg@1.5.1"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
